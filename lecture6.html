@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var isReversed = false;
+            var isFadedOut = false;
+            var isSlidUp = false;
+
+            $("button#mainanimation").click(function () {
+                if (!isReversed) {
+                    startAnimation();
+                    isReversed = true;
+                } else {
+                    $("div").stop().css({
+                        left: '0',
+                        opacity: '1',
+                        height: '100px',
+                        width: '100px'
+                    });
+                    isReversed = false;
+                }
+            }); 
+            $("button#slideanim").click(function () {
+                if (!isSlidUp) {
+                    $("div").slideUp(500, function () {
+                        isSlidUp = true;
+                    });
+                } else {
+                    $("div").slideDown(500, function () {
+                        isSlidUp = false;
+                    });
+                }
+            });
+
+            $("button#fadeanim").click(function () {
+                if (!isFadedOut) {
+                    $("div").fadeOut(500, function () {
+                        isFadedOut = true;
+                    });
+                } else {
+                    $("div").fadeIn(500, function () {
+                        isFadedOut = false;
+                    });
+                }
+            });
+
+            $("button#togglesquare").click(function () {
+                $("div").toggle();
+            });
+
+            $("button#event").click(function () {
+                alert("You shouldn't click it!");
+            });
+       
+            function startAnimation() {
+                $("div").animate({
+                    left: '250px',
+                    opacity: '0.5',
+                    height: '150px',
+                    width: '150px'
+                });
+            }
+        });
+
+    </script>
+</head>
+<body>
+    <button id="mainanimation">Start Animation (click again to reset)</button>
+    <button id="fadeanim">Fade Out/Fade In</button>
+    <button id="togglesquare">Toggle</button>
+    <button id="slideanim">Slideup/Slidedown</button>
+    <button id="event">Don't click this button.</button>
+    <div style="background:#125f21;height:100px;width:100px;position:absolute;"></div>
+</body>
+</html>
